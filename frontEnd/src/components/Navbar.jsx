@@ -5,7 +5,7 @@ import {AiOutlineMenu , AiOutlineClose} from "react-icons/ai"
 import { useState } from "react"
 import SideBar from "./SideBar"
 const Navbar = () => {
-    const [toggleBar,setToggleBar]=useState(true)
+    const [toggleBar,setToggleBar]=useState(false)
   return (
     <header className=" bg-background text-text w-full">
     <nav className="container mx-auto nav shadow-lg flex items-center justify-between py-4 px-3 relative">
@@ -25,13 +25,13 @@ const Navbar = () => {
         <li>
         <Link to={"/cart"} className="flex items-center gap-2">
         <BsFillCartFill size={20} />
-        <h2 className="">cart</h2>
+        <h3 className="">cart</h3>
             </Link>
         </li>
         <li>
         <Link to={"/signIn"} className="flex items-center gap-2">
             <BiSolidUser size={20} />
-            <h2>signIn</h2>
+            <h3>signIn</h3>
             </Link>
         </li>
             

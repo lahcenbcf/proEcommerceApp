@@ -1,11 +1,11 @@
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
-
-function AppLayout({children}) {
+import { Outlet } from "react-router-dom"
+function AppLayout() {
   return (
     <div>
       <Navbar />
-      {children}
+      <Outlet />
       <Footer />
     </div>
   )

@@ -1,0 +1,31 @@
+.spinnerWrapper{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+}
+.spinner-1{
+position: absolute;
+left: calc(50% - 21px);
+top: 20rem;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+    border-radius:50%;
+    z-index: 1;
+}
+
+.spinner-1::before{
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    clip: rect(0,42px,21px,0);
+    box-shadow: inset -5px 0 0 5px currentColor;
+    color: rgb(71, 69, 69);
+}
+

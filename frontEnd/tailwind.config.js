@@ -13,7 +13,13 @@ export default {
         'secondary': 'hsl(171, 96%, 10%)',
         'accent': 'hsl(171, 96%, 50%)',
        },
+       gridTemplateColumns:{
+        fluid:"repeat(auto-fit,minmax(20rem,1fr))"
+       },
+       flex:{
+        fluid:"max(calc((100% - 3rem) / 2),24rem)"
+       }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
