@@ -25,7 +25,7 @@ function RegisterScreen() {
     <div>
     {/* spinner loader */}
     {loading && <Spinner />}
-    <div className="max-w-lg mx-auto my-32 rounded-md shadow-lg p-4">
+    <div className="max-w-lg min-h-screen mx-auto my-32 rounded-md shadow-lg p-4">
     <h1 className="mb-6 text-slate-600">SIGN UP</h1>
     {/* erreur message */}
     {error && <p className="text-red-500">{error}</p>}

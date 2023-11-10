@@ -142,9 +142,9 @@ const updateUserProfile=async(req,res)=>{
         if(user){
             //update user Information$
             const {name,email,password}=req.body
-            user.name=name;
-            user.email=email;
-            user.password=password;
+            name && (user.name=name);
+            email && (user.email=email);
+            password && (user.password=password);
             const updateUser=await user.save()
             res.json({
                 _id:updateUser._id,

@@ -112,25 +112,65 @@ export const getUserProfile=()=>async(dispatch,getState)=>{
             type:USERDETAILS_REQUEST
         })
         const {login:{userInfo}}=getState()
-        const res=await placeholderApi.get("/user.getUserProfile",{
+        const res=await placeholderApi.get("/user/getUserProfile",{
             //here we will pass our authorization token Bearer
             headers:{
                 Authorization:`Bearer ${userInfo.token}`
             }
         });
-        if(res?.message){
+        if(res.data?.message){
             dispatch({
                 type:UNAUTHORIZED,
-                payload:res.message
+                payload:res.data?.message
             })
         }else{
             dispatch({
-                type:USERDETAILS_SUCCESS
+                type:USERDETAILS_SUCCESS,
+                payload:res.data
             })
         }
     } catch (error) {
         dispatch({
             type: UNAUTHORIZED,
+            payload:error.message
+        })
+    }
+}
+
+
+//update userData
+export const updateUserProfile=(name,email,password)=>async(dispatch,getState)=>{
+    try {
+        dispatch({
+            type:USERDETAILS_REQUEST
+        })
+        const res=await placeholderApi.put("/user/updateUserProfile",{
+            email,password,name
+        },{
+                headers:{
+                    Authorization:`Bearer ${getState().login.userInfo.token}`
+                   }
+                
+            }
+        
+        )
+        if(res.data?.message){
+            dispatch({
+                type:USERDETAILS_FAIL,
+                payload:res.data.message
+            })
+        }else{
+            dispatch({
+                type:USERDETAILS_SUCCESS,
+                payload:res.data
+            })
+
+            //set Local storage
+            localStorage.setItem("user",JSON.stringify(res.data))
+        }
+    } catch (error) {
+        dispatch({
+            type:USERDETAILS_FAIL,
             payload:error.message
         })
     }
