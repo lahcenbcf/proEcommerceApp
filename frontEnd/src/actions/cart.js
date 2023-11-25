@@ -1,6 +1,5 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART} from "../constants/cartActions"
+import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART, SAVE_SHIPPING_ADRESS,SAVE_PAYMENT_METHOD} from "../constants/cartActions"
 import { placeholderApi } from "./products"
-
 export const addCartItem=(productId,qty=1)=>async(dispatch,getState)=>{
     try {
         if(productId) {
@@ -18,7 +17,7 @@ export const addCartItem=(productId,qty=1)=>async(dispatch,getState)=>{
                 payload:newItem
             })
             //update localStorage
-            localStorage.setItem("cartItems",JSON.stringify(getState().cart.items))
+            localStorage.setItem("cartItems",JSON.stringify(getState().cart.cart.cartItems))
             /*
             //get the local storage
             const  {items}=localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []
@@ -79,6 +78,45 @@ export const removeCartItem=(order)=>async(dispatch,getState)=>{
         dispatch({
             type:FAIL_CART,
             payload:error.message
+        })
+    }
+}
+
+
+//save shipping adress
+export const saveShippingAdress=(data)=>async(dispatch,getState)=>{
+    try {
+        dispatch({
+            type:SAVE_SHIPPING_ADRESS,
+            payload:data
+        })
+        //update local Storage
+        localStorage.setItem("shippingAdress",JSON.stringify(getState().cart.cart.shippingAdress))
+       window.location.href="/payment"
+    } catch (error) {
+        dispatch({
+            type:FAIL_CART,
+            payload:error.message
+        })
+    }
+}
+
+
+//save paymentMethod
+
+
+export const savePaymentMethod=(pm)=>(dispatch,getState)=>{
+    try {
+        dispatch({
+            type:SAVE_PAYMENT_METHOD,
+            payload:pm
+        })
+        // save it in local storage
+        localStorage.setItem("paymentMethod",JSON.stringify(getState().cart.cart.paymentMethod))
+        window.location.href="/order"
+    } catch (error) {
+        dispatch({
+            message:"error saving mathod payment"
         })
     }
 }

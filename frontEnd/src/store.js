@@ -7,6 +7,7 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import { productListReducer, productReducer } from "./reducers/products"
 //import our cart reducer
 import { CartReducer } from "./reducers/cart"
+import { orderReducer } from "./reducers/order"
 //import our login and register Reducers
 import {loginUserReducer,registerUserReducer,userDetailsReducer} from "./reducers/user"
 //import unauthorized reducer
@@ -21,7 +22,8 @@ const reducer = combineReducers({
    login:loginUserReducer,
    register:registerUserReducer,
    authorization:unauthorized,
-   userDetails:userDetailsReducer
+   userDetails:userDetailsReducer,
+   orders:orderReducer
 })
 
 const store=createStore(reducer,initialState,composeWithDevTools(applyMiddleware(

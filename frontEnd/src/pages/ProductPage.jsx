@@ -10,6 +10,7 @@ function ProductPage() {
   const dispatch=useDispatch()
   const {productData,error,loading}=useSelector(store=>store.productData)
   const addToCart=(e)=>{
+    e.preventDefault()
     dispatch(addCartItem(productData._id));
   }
   useEffect(()=>{

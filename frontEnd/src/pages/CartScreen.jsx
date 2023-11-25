@@ -9,14 +9,15 @@ function CartScreen() {
     const {id}=useParams()
     const qty=location.search ? location.search.split("=")[1] : 1
     const dispatch=useDispatch()
-    const {items,error,empty}=useSelector(store=>store.cart)
+    const {empty,error,cart:{cartItems}}=useSelector(store=>store.cart);
+    
     useEffect(()=>{
         dispatch(addCartItem(id,qty))
     },[dispatch,qty,id])
     const totalData=useMemo(()=>{
         var totalPrice=0;
         var totalItems=0
-        items.forEach(item=>{
+        cartItems.forEach(item=>{
             totalPrice+=item.price;
             totalItems+=item.qty;
         })
@@ -28,14 +29,14 @@ function CartScreen() {
       {
         empty ? <h2>your cart is empty</h2> : (
             error ? <h3>{error}</h3>:
-        items.map(item=>(
+        cartItems.map(item=>(
         <CartItem key={item.name} {...item} />)
       ))}
       </div>
 
 
       {/* cartItems Total Display */}
-      { items.length && <DisplayTotalCart {...totalData}  /> }
+      { cartItems.length && <DisplayTotalCart {...totalData}  /> }
     </div>
   )
 }

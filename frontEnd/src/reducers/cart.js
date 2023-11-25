@@ -1,22 +1,29 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART} from "../constants/cartActions"
+import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART,SAVE_SHIPPING_ADRESS, SAVE_PAYMENT_METHOD} from "../constants/cartActions"
 
 
 // get cartItems from localStorage
 const cartItems=localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [];
-console.log(cartItems)
+// get Shipping Adress from local storage
+//for example if user close window we need to save the adr
+const shippingAdress=localStorage.getItem("shippingAdress") ? JSON.parse(localStorage.getItem("shippingAdress")): ""
+const paymentMethod=localStorage.getItem("paymentMethod") ? JSON.parse(localStorage.getItem("paymentMethod")): ""
 const initialState={
     empty:!cartItems.length,
-    items:cartItems,
+    cart:{
+        cartItems,
+        shippingAdress,
+        paymentMethod
+    },
     error:""
 }
 export const CartReducer=(state=initialState,action)=>{
     switch (action.type) {
         case ADD_CART_ITEM:
-           const ItemFound=state.items.find(item=> item.name === action.payload.name)
+           const ItemFound=state.cart.cartItems.find(item=> item.name === action.payload.name)
            if(ItemFound){
             
             //update our orders
-            const newItems=state.items.map(o=>{
+            const newItems=state.cart.cartItems.map(o=>{
                 if(o.name === action.payload.name){
                     return {
                         ...o,
@@ -25,12 +32,18 @@ export const CartReducer=(state=initialState,action)=>{
                     }
                 }else return o
             })
-            return {...state,items:newItems}
+            return {...state,cart:{
+                ...state.cart,
+                cartItems:newItems
+            }}
            }else{
             return {
                 empty:false,
-                items:[...state.items,action.payload]
+                cart:{
+                    ...state.cart,
+                cartItems:[...state.cart.cartItems,action.payload]
             }
+        }
            }
         case REMOVE_CART_ITEM :
             const itemToDelete=state.items.find(item=>item.name === action.payload)
@@ -39,7 +52,7 @@ export const CartReducer=(state=initialState,action)=>{
                const isEmpty=!newItems.length
                 return {
                     empty:isEmpty,
-                    items:newItems
+                    cartItems:newItems
                 }
             }else return {
                 ...state,error:"item to delete is not found"
@@ -49,6 +62,22 @@ export const CartReducer=(state=initialState,action)=>{
             return {
                 ...state,
                 error:action.payload
+            }
+        case SAVE_SHIPPING_ADRESS:
+            return {
+                ...state,
+                cart:{
+                    ...state.cart,
+                    shippingAdress:action.payload
+                }
+            }
+        case SAVE_PAYMENT_METHOD:
+            return {
+                ...state,
+                cart:{
+                    ...state.cart,
+                    paymentMethod:action.payload
+                }
             }
         default:
            return state

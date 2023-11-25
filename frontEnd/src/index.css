@@ -31,3 +31,9 @@ h4{
 p{
   font-size: 1rem;
 }
+
+@layer components {
+  .formGroup1 {
+    @apply flex items-center gap-2;
+  }
+}
