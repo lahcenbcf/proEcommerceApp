@@ -5,6 +5,7 @@ const {connect}=require("../config")
 const {notFound,errorHandler}=require("../middleWares/errorHandlers")
 const {productRouter}=require("../routes/productRoute")
 const {router}=require("../routes/userRoute")
+const {orderRouter}=require("../routes/orderRoute")
 const cors=require("cors")
 //pour capter json objects
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use(cors())
 //handeling error
 app.use("/user",router)
 app.use("/products",productRouter)
+app.use("/order",orderRouter)
 app.use(notFound)
 app.use(errorHandler)
 //connect

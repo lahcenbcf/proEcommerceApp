@@ -33,7 +33,7 @@ const OrderSchema=new mongoose.Schema({
     },
     orderItem:{
         type:Array,
-        ref:OrderItemModal,
+        ref:"OrderItemModal",
         required:true,
         default:[]
     },
@@ -43,14 +43,14 @@ const OrderSchema=new mongoose.Schema({
         default:0.0
     },
     taxPrice:{
-        type:Number,
+        type:String,
         required:true,
-        default:0.0
+        default:"0"
     },
     shippingPrice:{
-        type:Number,
+        type:String,
         required:true,
-        default:0.0
+        default:"0"
     },
     shippingAdress:{
         adress:{
@@ -61,7 +61,7 @@ const OrderSchema=new mongoose.Schema({
             type:String,
             required:true
         },
-        postalCode:{
+        pc:{
             type:String,
             required:true
         },
@@ -75,7 +75,7 @@ const OrderSchema=new mongoose.Schema({
         required:true,
         default:"visa"
     },
-    paymentResult:{
+    /*paymentResult:{
         id:{
             type:String
         },
@@ -88,7 +88,7 @@ const OrderSchema=new mongoose.Schema({
         emailAdr:{
             type:String
         }
-    },
+    },*/
     isDelivered:{
         type:Boolean,
         required:true,
@@ -96,11 +96,13 @@ const OrderSchema=new mongoose.Schema({
     },
     deliveredAt:{
         type:Date,
-        required:true
+        required:true,
+        default:new Date()
     },
     paidAt:{
         type:Date,
-        required:true
+        required:true,
+        default:new Date()
     }
 
 },{

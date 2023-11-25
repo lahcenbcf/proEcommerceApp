@@ -11,4 +11,5 @@ productRouter.get("/",getAllProducts)
 //@route GET/products/:productId
 //@access Public
 productRouter.get('/:productId',getUnicProduct)
+
 module.exports={productRouter}
