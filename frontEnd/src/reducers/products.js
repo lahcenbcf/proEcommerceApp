@@ -2,15 +2,18 @@ import {FAILPRODUCTLIST,SUCCESSPRODUCTLIST,PENDINGPRODUCTLIST,PRODUCT_FAIL,PRODU
 const initialState1={
     loading:false,
     products: [],
+    success:true,
     error:""
 }
 export const productListReducer=(state=initialState1,action)=>{
     switch(action.type){
         case PENDINGPRODUCTLIST:
-            return {...state,loading:true }
+            return {...state,loading:true ,
+            success:false}
         case SUCCESSPRODUCTLIST:
             return {
                 ...state,
+                success:true,
                 loading:false,
                 products:action.payload
             }

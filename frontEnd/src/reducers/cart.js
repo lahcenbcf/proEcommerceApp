@@ -1,4 +1,4 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART,SAVE_SHIPPING_ADRESS, SAVE_PAYMENT_METHOD} from "../constants/cartActions"
+import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART,SAVE_SHIPPING_ADRESS, SAVE_PAYMENT_METHOD,RESET_CART_ITEMS} from "../constants/cartActions"
 
 
 // get cartItems from localStorage
@@ -77,6 +77,13 @@ export const CartReducer=(state=initialState,action)=>{
                 cart:{
                     ...state.cart,
                     paymentMethod:action.payload
+                }
+            }
+        case RESET_CART_ITEMS:
+            return {
+                ...state,
+                cart:{
+                    cartItems:[]
                 }
             }
         default:

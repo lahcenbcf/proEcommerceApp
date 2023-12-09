@@ -7,11 +7,12 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import { productListReducer, productReducer } from "./reducers/products"
 //import our cart reducer
 import { CartReducer } from "./reducers/cart"
-import { orderReducer } from "./reducers/order"
+import { orderDetailsReducer, orderReducer } from "./reducers/order"
 //import our login and register Reducers
 import {loginUserReducer,registerUserReducer,userDetailsReducer} from "./reducers/user"
 //import unauthorized reducer
 import {unauthorized} from "./reducers/user"
+import { adminReducer,productAdminReducer,orderAdminReducer } from "./reducers/adminReducer"
 const initialState={}
 
 const middleware=[thunk]
@@ -23,7 +24,11 @@ const reducer = combineReducers({
    register:registerUserReducer,
    authorization:unauthorized,
    userDetails:userDetailsReducer,
-   orders:orderReducer
+   orders:orderReducer,
+   orderDetails:orderDetailsReducer,
+   adminReducer:adminReducer,
+   productAdminReducer,
+   orderAdminReducer
 })
 
 const store=createStore(reducer,initialState,composeWithDevTools(applyMiddleware(

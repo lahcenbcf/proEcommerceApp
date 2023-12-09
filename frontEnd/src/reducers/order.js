@@ -1,9 +1,10 @@
 import {CREATE_ORDER,ORDER_FAIL,ORDER_SUCCESS,GET_ORDERS} from "../constants/orderConstants"
-
+import {ORDER_DETAILS_PENDING,ORDER_DETAILS_FAIL,ORDER_DETAILS_SUCCESS} from "../constants/orderDetailsConstants"
 const initialState={
     error:"",
     loading:false,
-    orders:[]
+    success:false,
+    order:{}
 }
 
 export const orderReducer=(state=initialState,action)=>{
@@ -28,10 +29,42 @@ export const orderReducer=(state=initialState,action)=>{
                 return {
                     ...state,
                     loading:false,
-                    orders:[...state.orders,action.payload]
+                    success:true,
+                    order:action.payload
                 }
+            
 
             default:
                 return state;
         }
+}
+const initialState2={
+    success:false,
+    loading:false,
+    error:"",
+    orderinfo:{}
+}
+export const orderDetailsReducer=(state=initialState2,action)=>{
+    switch (action.type) {
+        case ORDER_DETAILS_PENDING:
+                return {
+                    ...state,
+                    loading:false
+                }
+        case ORDER_DETAILS_SUCCESS:
+            return {
+                ...state,
+                loading:false,
+                orderinfo:action.payload,
+                success:true
+            }
+        case ORDER_DETAILS_FAIL:
+            return {
+                ...state,
+                loading:false,
+                error:action.payload
+            }
+        default:
+            return state
+    }
 }

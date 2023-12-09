@@ -1,18 +1,25 @@
-import {useRef} from "react"
+import {useEffect, useRef} from "react"
 import {useDispatch,useSelector} from "react-redux"
 import {loginUser} from "../actions/user"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Spinner from "../utils/Spinner"
 function LoginScreen() {
     const dispatch=useDispatch()
-    const {userInfo,error,loading}=useSelector(store=>store.login)
+    const {userInfo,error,loading,success}=useSelector(store=>store.login)
     const emailRef=useRef()
     const passRef=useRef()
+    const navigate=useNavigate()
     const authUser=(e)=>{
         e.preventDefault()
         if(!emailRef.current.value || !passRef.current.value) return;
         dispatch(loginUser(emailRef.current.value,passRef.current.value))
     }
+
+    useEffect(()=>{
+        if(success){
+            navigate("/")
+        }
+    },[success])
 
   return (
     <>

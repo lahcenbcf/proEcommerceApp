@@ -14,7 +14,8 @@ export default {
         'accent': 'hsl(171, 96%, 50%)',
        },
        gridTemplateColumns:{
-        fluid:"repeat(auto-fit,minmax(20rem,1fr))"
+        fluid:"repeat(auto-fit,minmax(20rem,1fr))",
+        "cols-4":"repeat(auto-fit,minmax(12rem,1fr))"
        },
        flex:{
         fluid:"max(calc((100% - 3rem) / 2),24rem)"

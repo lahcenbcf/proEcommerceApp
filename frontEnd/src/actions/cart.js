@@ -1,4 +1,4 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART, SAVE_SHIPPING_ADRESS,SAVE_PAYMENT_METHOD} from "../constants/cartActions"
+import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART, SAVE_SHIPPING_ADRESS,SAVE_PAYMENT_METHOD, RESET_CART_ITEMS} from "../constants/cartActions"
 import { placeholderApi } from "./products"
 export const addCartItem=(productId,qty=1)=>async(dispatch,getState)=>{
     try {
@@ -117,6 +117,22 @@ export const savePaymentMethod=(pm)=>(dispatch,getState)=>{
     } catch (error) {
         dispatch({
             message:"error saving mathod payment"
+        })
+    }
+}
+
+//reset cart items
+export const resetCartItems=()=>(dispatch,getState)=>{
+    try{
+        dispatch({
+            type:RESET_CART_ITEMS
+        })
+        //clear the localstorage
+        localStorage.removeItem("cartItems");
+    }catch(e){
+        dispatch({
+            type:FAIL_CART,
+            payload:error.message
         })
     }
 }

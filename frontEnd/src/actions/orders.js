@@ -1,4 +1,5 @@
 import {CREATE_ORDER,ORDER_FAIL,ORDER_SUCCESS} from "../constants/orderConstants"
+import {ORDER_DETAILS_FAIL,ORDER_DETAILS_PENDING,ORDER_DETAILS_SUCCESS} from "../constants/orderDetailsConstants"
 
 import { placeholderApi } from "./products"
 
@@ -9,11 +10,11 @@ export const createOrder=(data)=>async(dispatch)=>{
             type:CREATE_ORDER
         })
         const myToken=localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).token
-        console.log(myToken)
         const res=await placeholderApi.post("/order/createorder",
             
             data,{
                 headers:{
+                    "content-type":"application/json",
                     "Authorization":`Bearer ${myToken}`
                 }
             
@@ -51,3 +52,35 @@ export const getOrders=()=>async(dispatch)=>{
         })
     }
 }
+
+export const getOrderById=(orderId)=>async(dispatch,getState)=>{
+    try {
+        //just to activate loading mode
+        dispatch({
+            type:ORDER_DETAILS_FAIL
+        }) 
+        const myToken=getState().login.userInfo.token;
+        const res=await placeholderApi.get(`/order/${orderId}`,{
+            headers:{
+                Authorization:`Bearer ${myToken}`
+            }
+        }) 
+        if(res.status === 200){
+            dispatch({
+                type:ORDER_DETAILS_SUCCESS,
+                payload:res.data
+            })
+        }else{
+            dispatch({
+                type:ORDER_DETAILS_FAIL,
+                payload:"something went wrong"
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type:ORDER_DETAILS_FAIL,
+            payload:error.message
+        })
+    }
+}
+

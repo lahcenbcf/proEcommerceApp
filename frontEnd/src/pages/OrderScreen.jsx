@@ -2,30 +2,28 @@ import { useDispatch, useSelector } from "react-redux"
 import CheckoutMap from "../components/CheckoutMap"
 import {createOrder} from "../actions/orders"
 import {useNavigate } from "react-router-dom"
-import { useMemo } from "react"
+import OrderItem from "../components/OrderItem"
 import Spinner from "../utils/Spinner"
+import OrderSummary from "../components/OrderSummary"
+import { resetCartItems } from "../actions/cart"
 function OrderScreen() {
   const navigate=useNavigate()
-  const {loading}=useSelector(store=>store.orders)
-  console.log(loading)
+  const {loading,success,order}=useSelector(store=>store.orders)
   const {cart:{paymentMethod,shippingAdress,cartItems}}=useSelector(store => store.cart)
+  if(!cartItems) navigate("/")
+  if(!shippingAdress) navigate("/shipping")
+  if(!paymentMethod) navigate("/payment")
   //if(!paymentMethod) navigate("/payment")
+  
   const dispatch=useDispatch()
-  const totalPrice=useMemo(()=>{
-    var initialPrice=0;
-    cartItems.forEach(item=>initialPrice+=item.price);
-    return initialPrice
-  }
-  )
-
+  const totalPrice=cartItems.reduce((acc,item)=>
+    acc+=item.price,0)
+    //the problem is when I refresh the page success is false so placeOrder page will not move to the orderPage
+  if(success) navigate(`/order/${order._id}`)
   const tax=Number(totalPrice * 0.11)
 
-  const totalItems=useMemo(()=>{
-    var initialItems=0;
-    cartItems.forEach(item=>initialItems+=item.qty);
-    return initialItems
-  }
-  )
+  const totalItems=cartItems.reduce((acc,item)=>
+    acc+=item.qty,0)
   const submitHandler=(e)=>{
     e.preventDefault()
     dispatch(createOrder({
@@ -33,11 +31,16 @@ function OrderScreen() {
       shippingAdress,
       paymentMethod,
       totalItems,
-      taxPrice:"10$",
+      taxPrice:0.15*totalPrice+"$",
       shippingPrice:totalPrice < 100 ? "0$" :"10$",
       totalPrice
     }))
+
+    //reset the cartItems
+    dispatch(resetCartItems())
   }
+
+
   return (
     <div className="container mx-auto p-4">
     {loading && <Spinner />}
@@ -60,56 +63,14 @@ function OrderScreen() {
     <h2>ORDER ITEMS</h2>
     <ul className="list-none">{
       cartItems.map(item => (
-        <li>
-        <div className="flex py-4 border-b-[1px] border-slate-400 items-center">
-          {/* product image */}
-          <div className="w-10 h-10  border-slate-600 rounded-sm">
-          <img src={item.image} className="w-[100%] h-[100%] object-cover" />
-          </div>
-
-          {/* product name */}
-          <p className="mx-4 font-semibold">{item.product.name}</p>
-          {/* item id */}
-          <p>{item.name.split(" ")[1] }</p>
-
-      {/*quantity*/}
-      <p className="text-slate-500 mx-4 font-semibold">{item.qty + "*"+ item.unit_price+"$ =" +item.price + "$"}</p>
-
-        </div>
-        </li>
+        <OrderItem name={item.name} product={item.product} image={item.image} unit_price={item.unit_price} price={item.price} qty={item.qty} />
       ))
     }</ul>
         </div>   
 
         {/* order summary */}
-      <div className="p-3 border border-slate-400 rounded-sm">
-          <h1>ORDER SUMMARY</h1>
-          <ul className="flex flex-col gap-4">
-          <li className="flex justify-between border-b-[1px] py-3">
-            <p>items</p>
-            <span>{totalItems}</span>
-            
-          </li>
-          <li className="flex justify-between border-b-[1px] py-3">
-            <p>shipping</p>
-            <span>{totalPrice < 100 ? "0$" :"10$"}</span>
-            
-          </li>
-          <li className="flex justify-between border-b-[1px] py-3">
-            <p>Tax</p>
-            <span>{Math.round(tax)+"$"}</span>
-            
-          </li>
-          <li className="flex justify-between border-b-[1px] py-3">
-            <p>Total</p>
-            {
-              totalPrice  + "$"
-            }
-           
-          </li>
-          </ul>
-          <button onClick={submitHandler} className="bg-black text-white px-3 pb-3 pt-2 my-3 w-full outline-none">place order</button>
-      </div>
+        <OrderSummary totalItems={totalItems} submitHandler={submitHandler} totalPrice={totalPrice} tax={tax} />
+        
       </div>
     </div>
   )
