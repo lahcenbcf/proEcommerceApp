@@ -99,7 +99,17 @@ const OrderSchema=new mongoose.Schema({
         required:true,
         default:new Date()
     },
+    isPaid:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
     paidAt:{
+        type:Date,
+        required:true,
+        default:new Date()
+    },
+    date:{
         type:Date,
         required:true,
         default:new Date()

@@ -1,0 +1,18 @@
+const express=require("express")
+const { updateOrderToPaid } = require("../controllers/orderController")
+const {getAllUsers, deleteUser,confirmUser, getAllProducts,deleteProduct, createProduct, updateProduct,getAllOrders} =require("../controllers/adminController")
+const {getUserById}=require("../controllers/userController")
+const {admin}=require("../middleWares/isAdmin")
+const { protect } = require("../middleWares/userAuth")
+const adminRoute=express.Router()
+adminRoute.patch("/updateOrderToPaid/:id",/*protect,admin,*/updateOrderToPaid)
+adminRoute.get("/getUsers",protect,admin,getAllUsers)
+adminRoute.delete("/deleteUser/:userId",protect,admin,deleteUser);
+adminRoute.patch("/updateStatus/:userId",protect,admin,confirmUser)
+adminRoute.get("/getUserByIdToEdit/:userId",protect,admin,getUserById)
+adminRoute.get("/getAllProducts",getAllProducts)
+adminRoute.delete("/deleteProduct/:productId",deleteProduct)
+adminRoute.post("/createProduct",createProduct)
+adminRoute.patch("/updateProduct/:productId",updateProduct)
+adminRoute.get("/getAllOrders",/*protect,admin,*/getAllOrders)
+module.exports={adminRoute}

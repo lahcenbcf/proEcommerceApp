@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 
 const reviewSchema=new mongoose.Schema({
-    name:{
+    desc:{
       type:String,
       required:true,
       default:""  
@@ -19,7 +19,18 @@ const reviewSchema=new mongoose.Schema({
      
 })
 const ReviewModal=mongoose.model("ReviewModal",reviewSchema)
+const ImageSchema=new mongoose.Schema({
+    data:{
+        type:Buffer,
+        required:true
+    },
+    extName:{
+        required:true,
+        type:String
+    }
 
+})
+const ImageModel=new mongoose.model("ImageModel",ImageSchema)
 const ProductSchema=new mongoose.Schema({
     owner:{
         type:mongoose.Schema.Types.ObjectId,
@@ -28,25 +39,23 @@ const ProductSchema=new mongoose.Schema({
     },
     name:{
         type:String,
-        required:true
+        default:""
     },
     category:{
         type:String,
-        required:true,
-        default:false
+        default:""
     },
     price:{
         type:String,
         default:"free",
-        required:true
     },
     brand:{
         type:String,
-        default:"no brand",
-        required:true
+        default:"no brand"
     },
     image:{
-        type:String,
+        type:Object,
+        ref:ImageModel,
         required:true
     },
     description:{
@@ -55,23 +64,19 @@ const ProductSchema=new mongoose.Schema({
     },
     rating:{
         type:Number,
-        required:true,
         default:0
     },
     countInStock:{
         type:Number,
-        required:true,
         default:0
     },
     numReviews:{
-        type:String,
-        required:true,
+        type:Number,
         default:0
     },
     reviews:{
         type:Array,
         ref:"ReviewModal",
-        required:true,
         default:[]
     }
     

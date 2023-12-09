@@ -5,13 +5,15 @@ const {generateToken}=require("../utils/generateToken")
 //@access Public
 const authUser=async(req,res)=>{
     const {email,password}=req.body
+    console.log(req.body)
     try {
         const user=await UserModal.findOne({
             email
         })
     
         if(user && (await user.matchPassword(password))){
-           res.json({
+            console.log("hello")
+           return res.json({
                 _id:user._id,
                 name:user.name,   
                 email:user.email,
@@ -20,7 +22,7 @@ const authUser=async(req,res)=>{
             })
         }
         else{
-            res.json({
+            return res.json({
                 message:"invalid mail or password"
             })
             // this Error will go to catch block
@@ -165,10 +167,36 @@ const updateUserProfile=async(req,res)=>{
     }
 }
 
+//@desc getUser by ID
+//@route GET/user/:id
+//@access private /Admin
+const getUserById=async(req,res)=>{
+    //for the moment I use userId from params
+    const id=req.params.userId;
+    //const userId=req.user._id
+    try {
+        const user=await  UserModal.findById(id);
+    if(user){
+        return res.status(200).json({
+            user
+        })
+    }else{
+        return res.status(400).json({
+            message:"user not found"
+        })
+    }
+    } catch (error) {
+        res.json({
+            message:error.message
+        })
+    }
+    
+}
 module.exports={
     authUser,
     getUserProfile,
     registerUser,
     logoutUser,
-    updateUserProfile
+    updateUserProfile,
+    getUserById
 }

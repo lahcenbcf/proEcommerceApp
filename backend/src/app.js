@@ -6,18 +6,25 @@ const {notFound,errorHandler}=require("../middleWares/errorHandlers")
 const {productRouter}=require("../routes/productRoute")
 const {router}=require("../routes/userRoute")
 const {orderRouter}=require("../routes/orderRoute")
+const {adminRoute}=require("../routes/admin")
 const cors=require("cors")
+const {uploadRouter}=require("../routes/uploadRouter")
+const path=require("path")
 //pour capter json objects
 app.use(express.json())
 app.use(express.urlencoded({
     extended:true
 }))
+const __direname=path.resolve()
+app.use("/uploads",express.static(path.join(__direname,"/uploads")))
 
 app.use(cors())
 //handeling error
 app.use("/user",router)
 app.use("/products",productRouter)
 app.use("/order",orderRouter)
+app.use("/admin",adminRoute)
+app.use("/upload",uploadRouter)
 app.use(notFound)
 app.use(errorHandler)
 //connect
