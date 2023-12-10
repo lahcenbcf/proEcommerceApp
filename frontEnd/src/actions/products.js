@@ -10,7 +10,7 @@ import {
 
 import axios from "axios"
 export const placeholderApi = axios.create({
-    baseURL: 'http://127.0.0.1:5000',
+    baseURL: 'https://proecommeceappmanagement.onrender.com/',
   });
 //loadProducts
 export const listProducts=()=>async(dispatch)=>{

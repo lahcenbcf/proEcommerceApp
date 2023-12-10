@@ -36,7 +36,7 @@ const Navbar = () => {
 
 
         <li>
-        {userInfo._id && 
+        {(userInfo._id && userInfo.isAdmin) && 
             <details className="dropdown">
   <summary className="text-lg mt-1">Admin</summary>
   <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 text-black font-bold">
