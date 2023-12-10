@@ -5,7 +5,7 @@ function PrivateRouteAdmin() {
   return (
     <div>
       {
-        !user.isAdmin && <Outlet />
+        user.isAdmin && <Outlet />
       }
     </div>
   )
