@@ -5,6 +5,7 @@ import { getProduct } from '../actions/products'
 import { useDispatch, useSelector } from 'react-redux'
 import {addCartItem} from "../actions/cart"
 import Spinner from '../utils/Spinner'
+import CustomerReview from '../components/CustomerReview'
 function ProductPage() {
   const {productId}=useParams()
   const dispatch=useDispatch()
@@ -15,7 +16,7 @@ function ProductPage() {
   }
   useEffect(()=>{
     dispatch(getProduct(productId))
-  },[dispatch])
+  },[])
 
   return (
     <>
@@ -26,7 +27,7 @@ function ProductPage() {
     {/* try with single data */}
     <h3 className="my-4 font-semibold text-secondary">Go back</h3>
     <div className="flex flex-wrap gap-[3rem]">
-        <img src={productData.image} alt={productData.name} className="w-[24rem] max-h-[30rem] object-cover flex-fluid flex-grow" />
+        <img src={`data:image/${productData.image.extName};base64,${productData.image.data}`} alt={productData.name} className="w-[24rem] max-h-[30rem] w-full object-cover flex-fluid flex-grow" />
     <div className='flex-fluid max-w-md'>
     <h1 className='font-bold mb-6'>{productData.name}</h1>
         <hr />
@@ -44,6 +45,9 @@ function ProductPage() {
     </div>
         
     </div>
+    {
+      productData.reviews && <CustomerReview reviews={productData.reviews} numReviews={productData.numReviews} productId={productId} />
+    }
     
     </div>
       )

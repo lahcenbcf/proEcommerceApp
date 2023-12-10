@@ -1,4 +1,8 @@
-import {FAILPRODUCTLIST,SUCCESSPRODUCTLIST,PENDINGPRODUCTLIST,PRODUCT_FAIL,PRODUCT_PENDING,PRODUCT_SUCCESS} from "../constants/productsActions"
+import {FAILPRODUCTLIST,SUCCESSPRODUCTLIST,
+    PENDINGPRODUCTLIST,PRODUCT_FAIL,
+    PRODUCT_PENDING,PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_REVIEW
+} from "../constants/productsActions"
 const initialState1={
     loading:false,
     products: [],
@@ -32,16 +36,25 @@ export const productListReducer=(state=initialState1,action)=>{
 const initialState2={
     productData:{},
     error:"",
+    success:false,
     loading:false
 }
 
 export const productReducer=(state=initialState2,action)=>{
     switch(action.type){
         case PRODUCT_PENDING:
-            return {...state,loading:true}
+            return {...state,loading:true,success:false}
         case PRODUCT_SUCCESS:
             return {
-                ...state,loading:false,productData:action.payload
+                ...state,loading:false,productData:action.payload,success:true
+            }
+        case UPDATE_PRODUCT_REVIEW:
+            state.productData.reviews=[...state.productData.reviews,action.payload]
+            state.productData.numReviews++
+            return {
+                ...state,
+                success:true,
+                loading:false
             }
         case PRODUCT_FAIL :
             return {

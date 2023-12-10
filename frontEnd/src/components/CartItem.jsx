@@ -13,7 +13,7 @@ function CartItem(props) {
   return (
     <div className='max-w-md px-4 py-3 rounded-md bg-slate-200 shadow-xl flex gap-4 my-3 items-start'>
     <div className='imageWrapper w-24 h-24'>
-    <img className='w-[100%] h-full object-cover' src={props.image} alt={props.product.name} />
+    <img className='w-[100%] h-full object-cover' src={`data:image/${props.image.extName};base64,${props.image.data}`} alt={props.product.name} />
     </div>
    <h4 className='font-semibold max-w-[10ch] mx-4'>{props.product.name}</h4>
    <h5 className='font-bold text-slate-500'>{Math.round(props.price,2)} $</h5>
