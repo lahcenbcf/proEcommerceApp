@@ -9,6 +9,7 @@ const {orderRouter}=require("../routes/orderRoute")
 const {adminRoute}=require("../routes/admin")
 const cors=require("cors")
 const {uploadRouter}=require("../routes/uploadRouter")
+const morgan=require("morgan")
 const path=require("path")
 //pour capter json objects
 app.use(express.json())
@@ -17,7 +18,10 @@ app.use(express.urlencoded({
 }))
 const __direname=path.resolve()
 app.use("/uploads",express.static(path.join(__direname,"/uploads")))
-
+//morgan
+if(process.env.NODE_ENV === "development"){
+    app.use(morgan("dev"))
+}
 app.use(cors())
 //handeling error
 app.use("/user",router)

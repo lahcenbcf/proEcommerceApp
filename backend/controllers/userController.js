@@ -5,7 +5,6 @@ const {generateToken}=require("../utils/generateToken")
 //@access Public
 const authUser=async(req,res)=>{
     const {email,password}=req.body
-    console.log(req.body)
     try {
         const user=await UserModal.findOne({
             email
