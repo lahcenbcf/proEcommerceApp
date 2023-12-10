@@ -1,1 +1,66 @@
-# proEcommerceApp
+
+# Emporium Hub: Seamless E-commerce Management
+
+Empower your e-commerce business with Emporium Hub. Our app grants admins control over product listings, user permissions, and order management. Users enjoy a user-friendly interface, interactive product profiles, and the ability to leave comments for a community-driven shopping experience. Elevate your online retail with effortless admin tools and engaging user interactions
+
+
+
+## Authors
+
+- [@Hassane BENCHAREF](https://www.github.com/lahcenbcf)
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| text | ![#e5fee1](https://via.placeholder.com/10/0a192f?text=+) #e5fee1|
+| background | ![#000000](https://via.placeholder.com/10/f8f8f8?text=+) #000000 |
+| primary | ![#037c2e](https://via.placeholder.com/10/00b48a?text=+) #037c2e |
+| secondary | ![#01322b](https://via.placeholder.com/10/00b48a?text=+) 	#01322b |
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+
+## 🚀 About Me
+I'm a full stack developer...
+
+
+## 🛠 Skills
+Javascript, HTML, CSS... 
+React Js
+Node Js, Express Js
+MongoDb
+Redux
+
+
+## Installation
+git clone
+
+```bash
+  cd frontend | npm install |npm run dev
+  cd backend |npm install | npm run server
+```
+    
+## Screenshots
+
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333091-1ba2c702-bd12-4180-ab04-51ea3a8f5883.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMDkxLTFiYTJjNzAyLWJkMTItNDE4MC1hYjA0LTUxZWEzYThmNTg4My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02ZDhmODU4MTE2YzM4YzZlMzhlMTU0MmI2NmQ0YTczYTc2YjM1NDFlOWU3MTFlNDVjNjRmN2I0ZWVhMjc0Yjc3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.5SwX7NM1qe7jjIxK51rrXHPYEDWwmCQwwO7CjMWXhk4)
+
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333093-40772a05-b0c6-4c21-9a8e-94d89e5ec7fa.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMDkzLTQwNzcyYTA1LWIwYzYtNGMyMS05YThlLTk0ZDg5ZTVlYzdmYS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00ZTc3NDcxYjA1OGU0NmY3ZmYzNjA0NzBhNjIyN2NjMmQwMDRmOWM4YjE1NTUzYzI1ZjRjZGNhZTc5YmE1YWQ0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.CKc694DUsQve1SDuPXnpax3v24NRgPtGkJ9nWAy5JNQ)
+
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333096-7c6dc5e9-642b-44e3-8c6e-07b0a1cd1735.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMDk2LTdjNmRjNWU5LTY0MmItNDRlMy04YzZlLTA3YjBhMWNkMTczNS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00ZjYyMDU4NmM1NmI4YTJkODUxNjZkMjk0YWE5ZjQxYjU3MmQyZTdjZGQzZDY3N2Q0MjVkMDZhOWM0ZWY2NDdhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.NqHeNi_IHYsh0C3cpIT8djlLevh6huaL_8kt4Y9zq8g)
+
+
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333097-25ad1b2b-5e16-4eec-b949-7ba7c40cfa46.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMDk3LTI1YWQxYjJiLTVlMTYtNGVlYy1iOTQ5LTdiYTdjNDBjZmE0Ni5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zYWU1YWU4ZDI1MzZhZDI3MDJlNTYzNDM5Mzg3NDhhZWYyZWQwN2JjY2JkYjViZDQ4MDUxZDIxYWE1NDg4MWIyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.l3VCw_lPS-bYdveQnqGSUE7I4GWJ0BVlNHaj-024Ads)
+
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333099-c03d8fd0-752f-420d-9a4f-5a4f1ce620ac.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMDk5LWMwM2Q4ZmQwLTc1MmYtNDIwZC05YTRmLTVhNGYxY2U2MjBhYy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lNjM4MDMxYmE1ODg5NGQ5M2Q1NjAwNmNhNmZlZjU3MTFjMDcxYjY4MDY1OTgzNjc0MzhjMGMxYjIyN2IyMTlkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.z-hNfQjyoJCNNnJYlzlopaSye_ah9LDWwfrXsqCjcmA)
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333104-3b1b567e-b9ca-40c2-8458-6c1c59e84721.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMTA0LTNiMWI1NjdlLWI5Y2EtNDBjMi04NDU4LTZjMWM1OWU4NDcyMS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04OGVmOWNkZDIxOGMzNTZmMGEzYjU5Mzc5NWNkMDFjNDg0Y2VlNTQ0M2FmZDIzMGMwNTg2ZTNiZDZiNTI1YTUzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.IoP-vd1Uov_ZHlz8zVMkOZELOKOVsYFdCed6imzbH3w)
+
+![App Screenshot](https://private-user-images.githubusercontent.com/107793995/289333106-3c565270-2046-45f0-9fb9-4ef72ca1f53d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDIxNzQ3NjQsIm5iZiI6MTcwMjE3NDQ2NCwicGF0aCI6Ii8xMDc3OTM5OTUvMjg5MzMzMTA2LTNjNTY1MjcwLTIwNDYtNDVmMC05ZmI5LTRlZjcyY2ExZjUzZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIxMFQwMjE0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zOWM1M2EwOTc2ODQ2NTY4MGMwNTI4ZWY4ODhkY2FlNDAwZWQ0NDJjOWU4NTg0Yzc4ZjljNmYyYWJmYzBlMjIzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.2oabb6Py87SRp0IV_75-XeI6pWTt0cnuADSav7MoG2M)
+
