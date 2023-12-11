@@ -11,11 +11,11 @@ const initialState1={
 export const loginUserReducer=(state=initialState1,action)=>{
     switch (action.type) {
         case USER_REQUEST:
-            return {...state,loading:true}
+            return {...state,loading:true,success:false}
         case USER_SUCCESS:
             return {userInfo:action.payload,loading:false,success:true}
         case USER_FAIL:
-            return {...state,loading:false,error:action.payload}
+            return {...state,loading:false,error:action.payload,success:false}
         default: return state
     }
 }
