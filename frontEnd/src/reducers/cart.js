@@ -46,13 +46,15 @@ export const CartReducer=(state=initialState,action)=>{
         }
            }
         case REMOVE_CART_ITEM :
-            const itemToDelete=state.items.find(item=>item.name === action.payload)
+            const itemToDelete=state.cart.cartItems.find(item=>item.name === action.payload)
             if(itemToDelete){
-                const newItems=state.items.filter(item=>item.name !== action.payload)
+                const newItems=state.cart.cartItems.filter(item=>item.name !== action.payload)
                const isEmpty=!newItems.length
                 return {
                     empty:isEmpty,
-                    cartItems:newItems
+                    {
+...state.cart,
+cartItems:newItems}
                 }
             }else return {
                 ...state,error:"item to delete is not found"
