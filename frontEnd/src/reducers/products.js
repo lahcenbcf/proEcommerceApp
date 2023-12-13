@@ -1,13 +1,17 @@
 import {FAILPRODUCTLIST,SUCCESSPRODUCTLIST,
     PENDINGPRODUCTLIST,PRODUCT_FAIL,
     PRODUCT_PENDING,PRODUCT_SUCCESS,
-    UPDATE_PRODUCT_REVIEW
+    UPDATE_PRODUCT_REVIEW,
+    GET_TOP_RATED_PRODUCTS
 } from "../constants/productsActions"
 const initialState1={
     loading:false,
     products: [],
     success:true,
-    error:""
+    error:"",
+    pageNum:0,
+    pages:0,
+    topRatedProducts:[]
 }
 export const productListReducer=(state=initialState1,action)=>{
     switch(action.type){
@@ -19,7 +23,16 @@ export const productListReducer=(state=initialState1,action)=>{
                 ...state,
                 success:true,
                 loading:false,
-                products:action.payload
+                products:action.payload.products,
+                pageNum:action.payload.pageNum,
+                pages:action.payload.pages
+            }
+        case GET_TOP_RATED_PRODUCTS:
+            return {
+                ...state,
+                success:true,
+                loading:false,
+                topRatedProducts:action.payload
             }
         case FAILPRODUCTLIST:
             return {

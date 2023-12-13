@@ -5,6 +5,7 @@ import { getProduct } from '../actions/products'
 import { useDispatch, useSelector } from 'react-redux'
 import {addCartItem} from "../actions/cart"
 import Spinner from '../utils/Spinner'
+import Loader from '../components/Loader'
 import CustomerReview from '../components/CustomerReview'
 function ProductPage() {
   const {productId}=useParams()
@@ -22,7 +23,7 @@ function ProductPage() {
   return (
     <>
     {
-      loading ? <Spinner /> : (
+      loading ? <Loader /> : (
         error ? <p>{error}</p> : 
         <div className="container mx-auto my-4 min-h-screen px-4">
     {/* try with single data */}
@@ -47,7 +48,7 @@ function ProductPage() {
         
     </div>
     {
-      productData?.reviews && <CustomerReview reviews={productData?.reviews} numReviews={productData?.numReviews} productId={productId} />
+      productData?.reviews && <div className="relative border border-red-400"><CustomerReview reviews={productData?.reviews} numReviews={productData?.numReviews} productId={productId} /></div>
     }
     
     </div>

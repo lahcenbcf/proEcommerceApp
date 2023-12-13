@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,6 +15,7 @@ html{
 }
 body{
   min-height: 100vh;
+  font-family: 'Raleway', sans-serif;
 }
 
 h1{
@@ -23,7 +25,7 @@ h2{
   font-size: 1.8rem;
 }
 h3{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 h4{
   font-size: 1.1rem;
@@ -43,4 +45,40 @@ table,th,tr{
   .formGroup1 {
     @apply flex items-center gap-2;
   }
+}
+
+.logo:hover span{
+  opacity: 1;
+}
+
+.logoName span{
+  transition: all .2s ease-in-out;
+  opacity: 0;
+}
+.logoName span:nth-child(1){
+  transition-delay: 500ms;
+}
+.logoName span:nth-child(2){
+  transition-delay: 100ms;
+}
+.logoName span:nth-child(3){
+  transition-delay: 200ms;
+}
+.logoName span:nth-child(4){
+  transition-delay: 700ms;
+}
+.logoName span:nth-child(5){
+  transition-delay: 600ms;
+}
+.logoName span:nth-child(6){
+  transition-delay: 300ms;
+}
+.logoName span:nth-child(7){
+  transition-delay: 800ms;
+}
+
+.active{
+  background-color: rgba(128, 128, 128, 0.562);
+  color:white ;
+  border: solid 2px gray;
 }

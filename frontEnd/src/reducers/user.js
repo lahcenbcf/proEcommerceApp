@@ -1,4 +1,4 @@
-import {USER_REQUEST,USER_SUCCESS,USER_FAIL} from "../constants/userLogin"
+import {USER_REQUEST,USER_SUCCESS,USER_FAIL,CLOSE_LOGIN_SESSION} from "../constants/userLogin"
 import {UNAUTHORIZED} from "../constants/unAuthorizedActions"
 import { USERDETAILS_FAIL, USERDETAILS_REQUEST, USERDETAILS_SUCCESS,CLEAR_USER_DETAILS } from "../constants/userDetails"
 //login reducer
@@ -16,6 +16,8 @@ export const loginUserReducer=(state=initialState1,action)=>{
             return {userInfo:action.payload,loading:false,success:true}
         case USER_FAIL:
             return {...state,loading:false,error:action.payload,success:false}
+        case CLOSE_LOGIN_SESSION:
+            return {...state,userInfo:{}}
         default: return state
     }
 }
@@ -69,6 +71,10 @@ export const userDetailsReducer=(state=initialState4,action)=>{
             return {loading:false,user:{}}
         case USERDETAILS_FAIL:
             return {...state,error:action.payload,loading:false}
+        case CLEAR_USER_DETAILS:
+            return {
+                ...state,user:{}
+            }
         default:
             return state
     }

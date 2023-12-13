@@ -52,9 +52,10 @@ export const CartReducer=(state=initialState,action)=>{
                const isEmpty=!newItems.length
                 return {
                     empty:isEmpty,
+                    cart:
                     {
-...state.cart,
-cartItems:newItems}
+                        ...state.cart,
+                        cartItems:newItems}
                 }
             }else return {
                 ...state,error:"item to delete is not found"

@@ -1,6 +1,6 @@
 import {USER_REQUEST,USER_SUCCESS,USER_FAIL,USER_LOGOUT} from "../constants/userLogin"
 import {UNAUTHORIZED} from "../constants/unAuthorizedActions"
-import {USERDETAILS_FAIL,USERDETAILS_REQUEST,USERDETAILS_SUCCESS} from "../constants/userDetails"
+import {USERDETAILS_FAIL,USERDETAILS_REQUEST,USERDETAILS_SUCCESS,CLEAR_USER_DETAILS} from "../constants/userDetails"
 import {placeholderApi} from "./products"
 //login action
 export const loginUser=(email,password)=>async(dispatch,getState)=>{
@@ -53,11 +53,14 @@ export const logoutUser=()=>async(dispatch)=>{
                 payload:res.message
             })
         }
-        else dispatch({
-            type:USER_SUCCESS,
-            payload:res.data
+        else{ 
+            dispatch({
+                type:CLOSE_LOGIN_SESSION
+            })
+            dispatch({
+            type:CLEAR_USER_DETAILS
         })
-
+    }
         //remove from local storage
         localStorage.removeItem("user");
     } catch (error) {

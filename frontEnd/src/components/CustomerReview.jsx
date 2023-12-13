@@ -3,11 +3,11 @@ import {AddReviewToProduct} from "../actions/products.js"
 import {useDispatch, useSelector} from "react-redux"
 import Spinner from "../utils/Spinner.jsx"
 import ReviewItem from "./ReviewItem"
+import Loader from "./Loader.jsx"
 function CustomerReview({
     numReviews,productId,
     reviews
 }){
-console.log(reviews)
     const dispatch=useDispatch()
     const {success,loading,error}=useSelector(store => store.productData)
     const [rating,setRating]=useState(1)
@@ -31,7 +31,7 @@ console.log(reviews)
 
   return (
     <>
-    {loading ? <Spinner /> :(
+    {loading ? <Loader /> :(
         error ? <p>error</p> :
     <div className="my-6 max-w-md w-full">
         <h1 className="mb-6 font-bold">REVIEWS</h1>

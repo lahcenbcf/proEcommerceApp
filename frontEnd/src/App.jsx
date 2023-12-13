@@ -31,6 +31,9 @@ function App() {
             <Route path="/signIn" element={<LoginScreen/>} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='' element={<PrivateRoute />}>
+            <Route path='/search/:keyword' element={<HomeScreen />} />
+            <Route path='/pages/:pageNum' element={<HomeScreen />} />
+            <Route path='/pages/:pageNum/search/:keyword' element={<HomeScreen />} />
             <Route path="/" element={<HomeScreen />} />
             <Route path="/products/:productId" element={<ProductPage />} />
             <Route path='/myProfile' element={<ProfilePage />} />
