@@ -1,8 +1,28 @@
 const {ProductModal}=require("../models/product")
 const getAllProducts=async(req,res)=>{
     try {
-        const products=await ProductModal.find()
-        res.json(products)
+        //we got the queries using req.query
+        const pageSize=10;
+        const pageNum=Number(req.query.pageNum) || 1
+        const keyword = req.query.keyword
+        ? {
+            name: {
+              $regex: req.query.keyword,
+              $options: 'i',
+            },
+          }
+        : {}
+
+        const count = await ProductModal.countDocuments({
+            ...keyword
+        })
+
+        const products= await ProductModal.find({
+            ...keyword
+        }).limit(pageSize).skip(pageSize*(pageNum - 1))
+        
+        res.json({products,pageNum,pages:Math.ceil(count / pageSize)})
+
     } catch (error) {
         res.json({
             message:error.message
@@ -74,4 +94,21 @@ const createProductReview=async(req,res)=>{
         })
     }
 }
-module.exports={getAllProducts,getUnicProduct,createProductReview}
+
+
+//@Desc get best rating products
+//@route GET /products/top
+//acess public
+const getTopProducts=async(req,res)=>{
+    try {
+        const products=await ProductModal.find({}).sort({
+            rating:-1
+        }).limit(3)
+        res.status(200).json(products)
+    } catch (error) {
+        return res.json({
+            message:error.message
+        })
+    }
+}
+module.exports={getAllProducts,getUnicProduct,createProductReview,getTopProducts}
