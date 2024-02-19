@@ -9,7 +9,7 @@ import RegisterScreen from './pages/RegisterScreen';
 import PrivateRoute from './components/PrivateRoute'
 import ProfilePage from './pages/ProfilePage';
 import PaymentScreen from "./pages/PaymentScreen";
-import OrderScreen from "./pages/OrderScreen";
+import PlaceOrderScreen from "./pages/PlaceOrderScreen.jsx";
 import ShippingScreen from './pages/ShippingScreen';
 import OrderDetailsScreen from "./pages/OrderDetailsScreen"
 import AdminScreen from './pages/adminPages/AdminScreen';
@@ -18,7 +18,7 @@ import PrivateRouteAdmin from './components/PrivateRouteAdmin';
 import ProductListScreen from './pages/adminPages/ProductListScreen';
 import ProductEditScreen from "./pages/adminPages/ProductEditScreen.jsx"
 import OrderAdminScreen from './pages/adminPages/OrderAdminScreen.jsx';
-
+import OrdersScreen from './pages/OrdersScreen.jsx';
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLayout />}>
             
-            <Route path='/cart/:id?' element={<CartScreen />} />
+            <Route path='/cart/:id' element={<CartScreen />} />
             <Route path="/signIn" element={<LoginScreen/>} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='' element={<PrivateRoute />}>
@@ -39,7 +39,8 @@ function App() {
             <Route path='/myProfile' element={<ProfilePage />} />
             <Route path='/shipping' element={<ShippingScreen />} />
             <Route path='/payment' element={<PaymentScreen />} />
-            <Route path='/placeOrder' element={<OrderScreen />} />
+            <Route path='/placeOrder' element={<PlaceOrderScreen />} />
+            <Route path='/orders' element={<OrdersScreen />} />
             <Route path='/order/:id' element={<OrderDetailsScreen />} />
             <Route path='/admin' element={<PrivateRouteAdmin />}>
                 <Route path='/admin' element={<AdminScreen />} />

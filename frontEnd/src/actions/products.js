@@ -11,7 +11,8 @@ import {
 
 import axios from "axios"
 export const placeholderApi = axios.create({
-    baseURL: 'https://proecommeceappmanagement.onrender.com/',
+    /*baseURL: 'https://proecommeceappmanagement.onrender.com/',*/
+    baseURL:"http://localhost:5000"
   });
 //loadProducts
 export const listProducts=(keyword="",pageNum="")=>async(dispatch)=>{
@@ -42,7 +43,6 @@ export const getProduct=(productId)=>async(dispatch)=>{
             type:PRODUCT_PENDING
         })
         const {data}=await placeholderApi.get(endPoint);
-        console.log(data)
             dispatch({
                 type:PRODUCT_SUCCESS,
                 payload:data

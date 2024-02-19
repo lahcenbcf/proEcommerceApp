@@ -1,4 +1,5 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART,SAVE_SHIPPING_ADRESS, SAVE_PAYMENT_METHOD,RESET_CART_ITEMS} from "../constants/cartActions"
+import { saveTotalPrice } from "../actions/cart";
+import {SAVE_TOTAL_PRICE,SAVE_TOTAL_ITEMS, ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART,SAVE_SHIPPING_ADRESS, SAVE_PAYMENT_METHOD,RESET_CART_ITEMS} from "../constants/cartActions"
 
 
 // get cartItems from localStorage
@@ -7,12 +8,21 @@ const cartItems=localStorage.getItem("cartItems") ? JSON.parse(localStorage.getI
 //for example if user close window we need to save the adr
 const shippingAdress=localStorage.getItem("shippingAdress") ? JSON.parse(localStorage.getItem("shippingAdress")): ""
 const paymentMethod=localStorage.getItem("paymentMethod") ? JSON.parse(localStorage.getItem("paymentMethod")): ""
+const total = cartItems?.reduce((acc, currentItem) => {
+    const priceToNumber = Number(currentItem.unit_price.split('$')[0]);
+    return (acc += priceToNumber * Number(currentItem.qty));
+  }, 0);
+  const totalItems = cartItems?.reduce((acc, currentItem) => {
+    return acc += currentItem.qty
+  }, 0);
 const initialState={
     empty:!cartItems.length,
     cart:{
         cartItems,
         shippingAdress,
-        paymentMethod
+        paymentMethod,
+        totalPrice:total,
+        totalItems:totalItems
     },
     error:""
 }
@@ -20,6 +30,7 @@ export const CartReducer=(state=initialState,action)=>{
     switch (action.type) {
         case ADD_CART_ITEM:
            const ItemFound=state.cart.cartItems.find(item=> item.name === action.payload.name)
+           
            if(ItemFound){
             
             //update our orders
@@ -27,20 +38,33 @@ export const CartReducer=(state=initialState,action)=>{
                 if(o.name === action.payload.name){
                     return {
                         ...o,
-                        qty:action.payload.qty,
+                        qty:action.payload.qty==1 ? ItemFound.qty+1 : action.payload.qty,
                         price:Number(o.unit_price) * (action.payload.qty)
                     }
                 }else return o
             })
+
+            const total = newItems?.reduce((acc, currentItem) => {
+                const priceToNumber = Number(currentItem.unit_price.split('$')[0]);
+                return (acc += priceToNumber * Number(currentItem.qty));
+              }, 0);
+              const totalItems = newItems?.reduce((acc, currentItem) => {
+                return acc += currentItem.qty
+              }, 0);
+              
             return {...state,cart:{
                 ...state.cart,
-                cartItems:newItems
+                cartItems:newItems,
+                totalPrice:total,
+                totalItems
             }}
            }else{
             return {
                 empty:false,
                 cart:{
                     ...state.cart,
+                    totalPrice:total,
+                totalItems,
                 cartItems:[...state.cart.cartItems,action.payload]
             }
         }
@@ -87,6 +111,22 @@ export const CartReducer=(state=initialState,action)=>{
                 ...state,
                 cart:{
                     cartItems:[]
+                }
+            }
+        case SAVE_TOTAL_PRICE:
+            return {
+                ...state,
+                cart:{
+                    ...state.cart,
+                    totalPrice:action.payload
+                }
+            }
+        case SAVE_TOTAL_ITEMS:
+            return {
+                ...state,
+                cart:{
+                    ...state.cart,
+                    totalItems:action.payload
                 }
             }
         default:

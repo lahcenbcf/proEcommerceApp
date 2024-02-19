@@ -1,4 +1,4 @@
-import {CREATE_ORDER,ORDER_FAIL,ORDER_SUCCESS} from "../constants/orderConstants"
+import {CREATE_ORDER,ORDER_FAIL,ORDER_PAY_REQUEST,ORDER_SUCCESS} from "../constants/orderConstants"
 import {ORDER_DETAILS_FAIL,ORDER_DETAILS_PENDING,ORDER_DETAILS_SUCCESS} from "../constants/orderDetailsConstants"
 
 import { placeholderApi } from "./products"
@@ -12,7 +12,7 @@ export const createOrder=(data)=>async(dispatch)=>{
         const myToken=localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).token
         const res=await placeholderApi.post("/order/createorder",
             
-            data,{
+            JSON.stringify(data),{
                 headers:{
                     "content-type":"application/json",
                     "Authorization":`Bearer ${myToken}`
@@ -84,3 +84,34 @@ export const getOrderById=(orderId)=>async(dispatch,getState)=>{
     }
 }
 
+
+//payment actions
+
+
+export const payOrder =(order_id,paymentRes)=>async(dispatch,getState)=>{
+    try {
+        dispatch({
+            type:ORDER_PAY_REQUEST
+        })
+         
+        const {userInfo}=getState().login
+
+        const config={
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${userInfo.token}`
+            }
+        }
+        const res =await placeholderApi.post(`/order/${order_id}/pay`,JSON.stringify({
+            paymentRes
+        }),config);
+        dispatch({
+            type:ORDER_SUCCESS,
+            payload:userOrders
+        })
+    } catch (error) {
+        dispatch({
+            type:ORDER_FAIL
+        })
+    }
+}

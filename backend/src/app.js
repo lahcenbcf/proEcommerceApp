@@ -29,6 +29,9 @@ app.use("/products",productRouter)
 app.use("/order",orderRouter)
 app.use("/admin",adminRoute)
 app.use("/upload",uploadRouter)
+app.get('/api/config/paypal',(req,res)=>{
+    res.send(process.env.PAYPAL_CLIENT_ID)
+})
 app.use(notFound)
 app.use(errorHandler)
 //connect

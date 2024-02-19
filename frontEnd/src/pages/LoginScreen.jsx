@@ -17,9 +17,13 @@ function LoginScreen() {
 
     useEffect(()=>{
         if(success){
-            navigate("/")
+            window.location.href="/"
         }
     },[success])
+
+    useEffect(()=>{
+            if(userInfo?._id) navigate("/")
+    },[userInfo?._id])
 
   return (
     <>

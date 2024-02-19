@@ -82,3 +82,19 @@ table,th,tr{
   color:white ;
   border: solid 2px gray;
 }
+
+
+.scrollBar::-webkit-scrollbar{
+  width: 10px;
+}
+.scrollBar::-webkit-scrollbar-thumb{
+  background-color: #888;
+  border-radius: 5px;
+}
+.scrollBar::-webkit-scrollbar-track{
+  background: #f1f1f1;;
+}
+
+.scrollBar::-webkit-scrollbar-thumb:hover{
+  background-color: #555;
+}

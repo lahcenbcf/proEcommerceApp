@@ -9,9 +9,7 @@ const authUser=async(req,res)=>{
         const user=await UserModal.findOne({
             email
         })
-    
         if(user && (await user.matchPassword(password))){
-            console.log("hello")
            return res.json({
                 _id:user._id,
                 name:user.name,   
@@ -75,10 +73,12 @@ const getUserProfile=async(req,res)=>{
 //@access public
 const registerUser=async(req,res)=>{
     const {email,password,username}=req.body
+
     try {
         const userExist=await UserModal.findOne(
              {email}
         )
+
         if(userExist){
             res.json({
                 message:"we have already an account with this mail"
@@ -90,6 +90,7 @@ const registerUser=async(req,res)=>{
                 password
             })
             if(user){
+
                 res.status(201).json({
                     success:`user created successufuly ${user._id}`
                 })

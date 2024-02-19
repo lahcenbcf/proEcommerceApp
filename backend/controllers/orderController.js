@@ -12,8 +12,10 @@ const createOrder=async(req,res)=>{
             shippingAdress,
             paymentMethod,
             shippingPrice,
-            totalPrice
+            totalPrice,
+            taxPrice
         }=req.body
+        console.log("wii")
         if(!orderItems || !orderItems.length){
             res.json({
                 message:"can not place order"
@@ -30,7 +32,7 @@ const createOrder=async(req,res)=>{
             orderItem:orderItems,
             shippingAdress:shippingAdress,
             paymentMethod:paymentMethod,
-
+            taxPrice
         })
         if(newOrder) res.status(201).json({
             message:"order created successufully",
@@ -51,7 +53,7 @@ const getOrderById=async(req,res)=>{
     try {
         const {id}=req.params
         
-        const order=await OrderModal.findById(id)
+        const order=await OrderModal.findById(id).populate("orderOwner")
         res.status(200).json(order)
     } catch (error) {
         res.json({
@@ -69,13 +71,14 @@ const getOrderById=async(req,res)=>{
 const updateOrderToPaid=async(req,res)=>{
     try {
         const {id}=req.params;
-        const date=new Date();
         const result = await OrderModal.findByIdAndUpdate(id,{
             $set:{
-                isPaid:date,
-                isPaid:true,
-                deliveredAt:date,
-                isDelivered:true
+                paymentResult:{
+                    id:req.body.id,
+                    status:req.body.status,
+                    update_time:req.body.update_time,
+                    email_adr:req.body.email
+                }
             }
         })
         if(result){

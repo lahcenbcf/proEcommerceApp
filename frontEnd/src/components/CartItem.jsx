@@ -16,7 +16,7 @@ function CartItem(props) {
     <img className='w-[100%] h-full object-cover' src={`data:image/${+props.image.extName};base64,${props.image.data}`} alt={props.product.name} />
     </div>
    <h4 className='font-semibold max-w-[10ch] mx-4'>{props.product.name}</h4>
-   <h5 className='font-bold text-slate-500'>{Math.round(props.price,2)} $</h5>
+   <h5 className='font-bold text-slate-500'>{props.unit_price}</h5>
    <select onChange={pickItemsNumber} className="select select-ghost w-[40px] rounded-none max-w-xs outline-none bg-inherit p-0 border-none">
   <option value={props.qty}>{props.qty}</option>
   <option value={1}>1</option>

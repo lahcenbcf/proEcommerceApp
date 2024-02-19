@@ -31,6 +31,8 @@ const ImageSchema=new mongoose.Schema({
 
 })
 const ImageModel=new mongoose.model("ImageModel",ImageSchema)
+
+
 const ProductSchema=new mongoose.Schema({
     owner:{
         type:mongoose.Schema.Types.ObjectId,

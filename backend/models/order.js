@@ -25,6 +25,30 @@ const orderItemSchema=new mongoose.Schema({
 })
 
 const OrderItemModal=mongoose.model("OrderItemModal",orderItemSchema)
+
+
+const paymentResult=new mongoose.Schema({
+        id:{
+            type:String,
+            required:true
+        },
+        status:{
+            type:String,
+            required:true
+                }
+                ,
+                update_time:{
+                    type: Date,
+                    required:true
+                },
+                email_adr:{
+                    type:String,
+                    required:true
+                }
+            })
+
+const PaymentModel=mongoose.model("PaymentModel",paymentResult)
+
 const OrderSchema=new mongoose.Schema({
     orderOwner:{
         type:mongoose.Schema.Types.ObjectId,
@@ -75,20 +99,13 @@ const OrderSchema=new mongoose.Schema({
         required:true,
         default:"visa"
     },
-    /*paymentResult:{
-        id:{
-            type:String
-        },
-        status:{
-            type:String
-        },
-        updateTime:{
-            type:String
-        },
-        emailAdr:{
-            type:String
+    paymentResult:{
+        ref:"PaymentModel",
+        type:mongoose.Schema.Types.ObjectId,
+        default:{
+            
         }
-    },*/
+    },
     isDelivered:{
         type:Boolean,
         required:true,

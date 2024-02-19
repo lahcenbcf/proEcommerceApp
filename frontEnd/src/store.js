@@ -7,7 +7,7 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import { productListReducer, productReducer } from "./reducers/products"
 //import our cart reducer
 import { CartReducer } from "./reducers/cart"
-import { orderDetailsReducer, orderReducer } from "./reducers/order"
+import { orderDetailsReducer, orderReducer ,orderPaidReducer} from "./reducers/order"
 //import our login and register Reducers
 import {loginUserReducer,registerUserReducer,userDetailsReducer} from "./reducers/user"
 //import unauthorized reducer
@@ -28,7 +28,8 @@ const reducer = combineReducers({
    orderDetails:orderDetailsReducer,
    adminReducer:adminReducer,
    productAdminReducer,
-   orderAdminReducer
+   orderAdminReducer,
+   orderPaidReducer
 })
 
 const store=createStore(reducer,initialState,composeWithDevTools(applyMiddleware(

@@ -1,7 +1,6 @@
 import { useState } from "react"
 import {AddReviewToProduct} from "../actions/products.js"
 import {useDispatch, useSelector} from "react-redux"
-import Spinner from "../utils/Spinner.jsx"
 import ReviewItem from "./ReviewItem"
 import Loader from "./Loader.jsx"
 function CustomerReview({
@@ -37,18 +36,18 @@ function CustomerReview({
         <h1 className="mb-6 font-bold">REVIEWS</h1>
         {
             numReviews==0 ? <div className="bg-blue-300 text-blue-800 w-full px-6 py-3">No reviews</div> :
-            <div className="h-24 overflow-scroll w-full border p-4">
+            <div className="scrollBar h-24 overflow-scroll w-full border p-4">
             {
                 reviews.map(review=>(
-                    <ReviewItem desc={review.desc} rating={review.rating} />
+                    <ReviewItem key={review._id} desc={review.desc} rating={review.rating} />
                 ))
             }
             </div>
         }
-        <h2 className="text-slate-500 text-2xl">WRITE A CUSTOMER REVIEW</h2>
+        <h2 className="text-slate-500 text-2xl mt-4">WRITE A CUSTOMER REVIEW</h2>
         {/* rating */}
         <div className="my-4">
-        <h4 className="text-slate-700">Rating</h4>
+        <h4 className="text-slate-700 font-bold">Rating</h4>
         <select value={rating} onChange={selectRating} className="w-20 border my-3 shadow-xl">
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -63,7 +62,7 @@ function CustomerReview({
         <input type="text" className="rounded-sm px-6 py-4 bg-slate-50 text-slate-600 font-bold w-full border outline-none mt-3 " onChange={(e)=>setComment(e.target.value)} />
         </div>
         
-        <button onClick={submitReview} className="bg-slate-700 text-white rounded-sm px-6 py-2">SUBMIT</button>
+        <button onClick={submitReview} className="bg-slate-700 text-white px-6 py-2 rounded-md">SUBMIT</button>
     </div>
     )}
     </>

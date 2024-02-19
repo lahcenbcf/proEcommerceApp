@@ -1,15 +1,16 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART, SAVE_SHIPPING_ADRESS,SAVE_PAYMENT_METHOD, RESET_CART_ITEMS} from "../constants/cartActions"
+import {ADD_CART_ITEM,REMOVE_CART_ITEM,FAIL_CART, SAVE_SHIPPING_ADRESS,SAVE_PAYMENT_METHOD, RESET_CART_ITEMS,SAVE_TOTAL_PRICE, SAVE_TOTAL_ITEMS } from "../constants/cartActions"
 import { placeholderApi } from "./products"
 export const addCartItem=(productId,qty=1)=>async(dispatch,getState)=>{
     try {
         if(productId) {
             const {data}=await placeholderApi.get(`/products/${productId}`)
+            console.log(data)
             const newItem={
                 product:data,
                 name:`item ${data._id}`,
                 qty,
                 unit_price:data.price,
-                price:Number(data.price) ,
+                price:data.price,
                 image:data.image
             }
             dispatch({
@@ -105,6 +106,36 @@ export const saveShippingAdress=(data)=>async(dispatch,getState)=>{
 //save paymentMethod
 
 
+export const saveTotalPrice=(tp)=>(dispatch)=>{
+    try {
+        dispatch({
+              type:SAVE_TOTAL_PRICE,
+              payload:tp       
+        })
+    } catch (error) {
+        dispatch({
+            type:FAIL_CART,
+            payload:error?.message
+        })
+    }
+}
+
+//save total items
+export const saveTotalItems=(ti)=>(dispatch)=>{
+    try {
+        dispatch({
+              type:SAVE_TOTAL_ITEMS,
+              payload:ti     
+        })
+    } catch (error) {
+        dispatch({
+            type:FAIL_CART,
+            payload:error?.message
+        })
+    }
+}
+
+
 export const savePaymentMethod=(pm)=>(dispatch,getState)=>{
     try {
         dispatch({
@@ -113,7 +144,7 @@ export const savePaymentMethod=(pm)=>(dispatch,getState)=>{
         })
         // save it in local storage
         localStorage.setItem("paymentMethod",JSON.stringify(getState().cart.cart.paymentMethod))
-        window.location.href="/order"
+        window.location.href="/placeOrder"
     } catch (error) {
         dispatch({
             message:"error saving mathod payment"
