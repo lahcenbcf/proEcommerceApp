@@ -5,6 +5,8 @@ const {getUserById}=require("../controllers/userController")
 const {admin}=require("../middleWares/isAdmin")
 const { protect } = require("../middleWares/userAuth")
 const adminRoute=express.Router()
+
+
 adminRoute.patch("/updateOrderToPaid/:id",protect,admin,updateOrderToPaid)
 adminRoute.get("/getUsers",protect,admin,getAllUsers)
 adminRoute.delete("/deleteUser/:userId",protect,admin,deleteUser);

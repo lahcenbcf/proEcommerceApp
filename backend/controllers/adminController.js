@@ -41,6 +41,8 @@ const getAllOrders=async (req,res)=>{
 //@access private
 const deleteUser=async(req,res)=>{
     try {
+
+       
         const {userId}=req.params
         const isDeleted=await UserModal.deleteOne({
             _id:userId
@@ -67,12 +69,13 @@ const deleteUser=async(req,res)=>{
 //pending ----> active
 const confirmUser=async(req,res)=>{
     try {
-        const bodyReq=req.body
+        const {newUserInfo}=req.body
+        console.log(newUserInfo)
         const {userId}=req.params
         const updatedUser=await UserModal.updateOne({
             _id:userId
         },{$set:{
-            ...bodyReq.newUserInfo
+            ...newUserInfo
         }})
         //console.log(user)
         /*{
